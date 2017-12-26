@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E204EA631FF27CE800156991 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204EA621FF27CE800156991 /* NetworkManager.swift */; };
+		E204EA651FF27CFD00156991 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204EA641FF27CFD00156991 /* DataManager.swift */; };
 		E278B13B1FC19208000B801A /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278B13A1FC19208000B801A /* WeatherController.swift */; };
 		E2CE93341FB5E4CA00FBBB18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE93331FB5E4CA00FBBB18 /* AppDelegate.swift */; };
 		E2CE933B1FB5E4CA00FBBB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE933A1FB5E4CA00FBBB18 /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E204EA621FF27CE800156991 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E204EA641FF27CFD00156991 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E278B13A1FC19208000B801A /* WeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherController.swift; sourceTree = "<group>"; };
 		E2CE93301FB5E4CA00FBBB18 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CE93331FB5E4CA00FBBB18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 			children = (
 				E2CE93331FB5E4CA00FBBB18 /* AppDelegate.swift */,
 				E278B13A1FC19208000B801A /* WeatherController.swift */,
+				E204EA621FF27CE800156991 /* NetworkManager.swift */,
+				E204EA641FF27CFD00156991 /* DataManager.swift */,
 				E2E4AEF01FBF21E200EAF98D /* Weather.storyboard */,
 				E2CE933C1FB5E4CA00FBBB18 /* LaunchScreen.storyboard */,
 				E2CE933A1FB5E4CA00FBBB18 /* Assets.xcassets */,
@@ -136,6 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E204EA631FF27CE800156991 /* NetworkManager.swift in Sources */,
+				E204EA651FF27CFD00156991 /* DataManager.swift in Sources */,
 				E278B13B1FC19208000B801A /* WeatherController.swift in Sources */,
 				E2CE93341FB5E4CA00FBBB18 /* AppDelegate.swift in Sources */,
 			);
@@ -271,7 +279,7 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.weather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woodcode.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -287,7 +295,7 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.weather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woodcode.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
