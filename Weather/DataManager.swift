@@ -9,5 +9,10 @@
 import Foundation
 
 final class DataManager {
+    static let dataManager = DataManager()
+    private let networkManager = NetworkManager()
     
+    private init () {
+        
+    }
 }
