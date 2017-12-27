@@ -14,7 +14,7 @@ final class NetworkManager {
         static let count = "7"
         static let apiKey = "59f3ee883bd98efaba93fe0f4a8cf516"
         
-        case city(n: String)
+        case name(n: String)
         case id(id: Int)
         case coordinates(lat: Double, lon: Double)
         case zipCode(zip: Int)
@@ -23,7 +23,7 @@ final class NetworkManager {
             var s = ""
             
             switch self {
-            case .city(let n):
+            case .name(let n):
                 s = "\(Path.host)?q=\(n)&cnt=\(Path.count)&appid=\(Path.apiKey)"
             case .id(let id):
                 s = "\(Path.host)?id=\(id)&cnt=\(Path.count)&appid=\(Path.apiKey)"
@@ -38,7 +38,7 @@ final class NetworkManager {
         
         private var method: String {
             switch self {
-            case .city:
+            case .name:
                 return "GET"
             case .id:
                 return "GET"
@@ -57,21 +57,3 @@ final class NetworkManager {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
