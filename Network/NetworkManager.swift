@@ -8,8 +8,10 @@
 
 import Foundation
 
+typealias JSON = [String: Any]
+
 final class NetworkManager {
-    enum  Path {
+    enum Path {
         static let host = "http://api.openweathermap.org/data/2.5/forecast/daily"
         static let count = "7"
         static let apiKey = "59f3ee883bd98efaba93fe0f4a8cf516"
@@ -57,3 +59,23 @@ final class NetworkManager {
     }
 
 }
+
+extension NetworkManager {
+    func call(path: Path, networkCallback: @escaping (JSON?, NetworkError?) -> Void) {
+        let task = URLSession.shared.dataTask(with: path.urlRequest) { data, URLResponse, error in
+            
+            
+            let json: JSON = [ : ]
+            networkCallback(json, nil)
+        }
+        
+        task.resume()
+    }
+}
+
+
+
+
+
+
+
