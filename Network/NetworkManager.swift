@@ -57,25 +57,45 @@ final class NetworkManager {
             return urlRequest
         }
     }
-
 }
 
 extension NetworkManager {
     func call(path: Path, networkCallback: @escaping (JSON?, NetworkError?) -> Void) {
-        let task = URLSession.shared.dataTask(with: path.urlRequest) { data, URLResponse, error in
+        let task = URLSession.shared.dataTask(with: path.urlRequest) {
+            data, urlResponse, error in
+
+            if let error = error as? URLError {
+                networkCallback(nil, NetworkError.urlError(error))
+                return
+            }
             
+            guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
+                networkCallback(nil, NetworkError.invalidResponse)
+                return
+            }
             
-            let json: JSON = [ : ]
+            if httpURLResponse.statusCode != 200 {
+                networkCallback(nil, NetworkError.invalidResponse)
+                return
+            }
+            
+            guard let data = data else {
+                networkCallback(nil, NetworkError.noData)
+                return
+            }
+            
+            guard
+                let obj  = try? JSONSerialization.jsonObject(with: data),
+                let json = obj as? JSON
+            else {
+                networkCallback(nil, NetworkError.invalidJSON)
+                return
+            }
+            
             networkCallback(json, nil)
+            print(json)
         }
         
         task.resume()
     }
 }
-
-
-
-
-
-
-
