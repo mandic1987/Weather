@@ -11,4 +11,5 @@ import Foundation
 enum DataError: Error {
     case networkError(NetworkError)
     case internalError
+    case invalidJSON
 }
