@@ -24,6 +24,8 @@ class WeatherController: UIViewController {
             forecasts, dataError in
             
             if let dataError = dataError {
+                
+                
                 return
             }
             

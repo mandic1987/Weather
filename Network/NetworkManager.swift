@@ -85,7 +85,7 @@ extension NetworkManager {
             }
             
             guard
-                let obj  = try? JSONSerialization.jsonObject(with: data),
+                let obj  = try? JSONSerialization.jsonObject(with: data, options: []),
                 let json = obj as? JSON
             else {
                 networkCallback(nil, NetworkError.invalidJSON)
@@ -93,7 +93,6 @@ extension NetworkManager {
             }
             
             networkCallback(json, nil)
-            print(json)
         }
         
         task.resume()
