@@ -44,9 +44,7 @@ extension DataManager {
                 print(error)
                 dataCallback(nil, nil, DataError.internalError)
             }
-            
-            
         }
-        
     }
+    
 }
