@@ -10,29 +10,25 @@ import Foundation
 import Marshal
 
 final class Forecast: Unmarshaling {
-    let cityID: Int
-    let name: String
+    
     let temp: Double
-    let description: String
-    let icon: String
     let tempMin: Double
     let tempMax: Double
     let humidity: Double
     let pressure: Double
     let wind: Double
+    let description: [String]
+    let icon: [String]
     
     init(object: MarshaledObject) throws {
-        cityID = try object.value(for: "id")
-        name = try object.value(for: "name")
-        temp = try object.value(for: "id")
-        description = try object.value(for: "name")
-        icon = try object.value(for: "email")
-        tempMax = try object.value(for: "id")
-        tempMin = try object.value(for: "name")
-        humidity = try object.value(for: "email")
-        pressure = try object.value(for: "id")
-        wind = try object.value(for: "name")
+        temp = try object.value(for: "temp.day")
+        tempMax = try object.value(for: "temp.max")
+        tempMin = try object.value(for: "temp.min")
+        humidity = try object.value(for: "humidity")
+        pressure = try object.value(for: "pressure")
+        wind = try object.value(for: "speed")
+        description = try object.value(for: "weather.description")
+        icon = try object.value(for: "weather.icon")
     }
 
 }
-

@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import Marshal
 
-final class City {
+final class City: Unmarshaling {
+    var id: Int
+    var name: String
     
+    init(object: MarshaledObject) throws {
+        id = try object.value(for: "id")
+        name = try object.value(for: "name")
+    }
 }

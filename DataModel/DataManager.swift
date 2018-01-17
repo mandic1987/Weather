@@ -19,29 +19,30 @@ final class DataManager {
 }
 
 extension DataManager {
-    func search(for name: String, dataCallback: @escaping ([Forecast], DataError?) -> Void) {
+    typealias Callback = (City?, [Forecast]?, DataError?) -> Void
+    
+    func search(for name: String, dataCallback: @escaping Callback) {
         let path: NetworkManager.Path = .name(n: name)
         
         networkManager.call(path: path) {
             json, networkError in
             
             if let networkError = networkError {
-                dataCallback([], DataError.networkError(networkError))
+                dataCallback(nil, nil, DataError.networkError(networkError))
             }
             
             guard let json = json else {
-                dataCallback([], DataError.invalidJSON)
+                dataCallback(nil, nil, DataError.invalidJSON)
                 return
             }
-            
-//            guard let result = json["list"] as? JSON else { return }
-            
+
             do {
+                let city: City = try json.value(for: "city")
                 let forecast: [Forecast] = try json.value(for: "list")
-                dataCallback(forecast, nil)
+                dataCallback(city, forecast, nil)
             } catch let error {
                 print(error)
-                dataCallback([], DataError.internalError)
+                dataCallback(nil, nil, DataError.internalError)
             }
             
             

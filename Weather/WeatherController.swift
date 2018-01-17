@@ -21,15 +21,13 @@ class WeatherController: UIViewController {
     
     func search(for name: String) {
         dataManager.search(for: name) {
-            forecasts, dataError in
+            city, forecasts, dataError  in
             
-            if let dataError = dataError {
-                
-                
+            if let _ = dataError {
                 return
             }
             
-            self.forecast = forecasts
+            self.forecast = forecasts!
         }
     }
 }
