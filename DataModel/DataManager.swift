@@ -39,10 +39,14 @@ extension DataManager {
             do {
                 let city: City = try json.value(for: "city")
                 let forecast: [Forecast] = try json.value(for: "list")
-                dataCallback(city, forecast, nil)
+                DispatchQueue.main.async {
+                    dataCallback(city, forecast, nil)
+                }
             } catch let error {
                 print(error)
-                dataCallback(nil, nil, DataError.internalError)
+                DispatchQueue.main.async {
+                    dataCallback(nil, nil, DataError.internalError)
+                }
             }
         }
     }
