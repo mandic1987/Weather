@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ugF-BB-CXS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ugF-BB-CXS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,13 +17,49 @@
                     <view key="view" contentMode="scaleToFill" id="vJj-uZ-ol7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="06r-Y4-dSI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xz1-Ck-Lkc">
+                                <rect key="frame" x="0.0" y="20" width="375" height="37"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rnT-q4-sbT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwg-Bg-Oa7">
+                                            <rect key="frame" x="8" y="8" width="359" height="21"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qwg-Bg-Oa7" secondAttribute="trailing" id="4je-jG-biW"/>
+                                        <constraint firstItem="qwg-Bg-Oa7" firstAttribute="top" secondItem="rnT-q4-sbT" secondAttribute="topMargin" id="GlY-zu-oR0"/>
+                                        <constraint firstItem="qwg-Bg-Oa7" firstAttribute="leading" secondItem="rnT-q4-sbT" secondAttribute="leadingMargin" id="guT-gx-Y4l"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qwg-Bg-Oa7" secondAttribute="bottom" id="inO-17-tMf"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="06r-Y4-dSI" firstAttribute="leading" secondItem="vJj-uZ-ol7" secondAttribute="leading" id="RoY-s8-u5Q"/>
+                            <constraint firstItem="xz1-Ck-Lkc" firstAttribute="leading" secondItem="gd6-bp-kY1" secondAttribute="leading" id="ai5-0o-Wsg"/>
+                            <constraint firstAttribute="trailing" secondItem="06r-Y4-dSI" secondAttribute="trailing" id="dH6-SJ-CyW"/>
+                            <constraint firstAttribute="bottom" secondItem="06r-Y4-dSI" secondAttribute="bottom" id="dY2-gA-gll"/>
+                            <constraint firstItem="gd6-bp-kY1" firstAttribute="top" secondItem="xz1-Ck-Lkc" secondAttribute="top" id="e9C-ud-s7p"/>
+                            <constraint firstItem="gd6-bp-kY1" firstAttribute="trailing" secondItem="xz1-Ck-Lkc" secondAttribute="trailing" id="l1y-s2-Gnf"/>
+                            <constraint firstItem="06r-Y4-dSI" firstAttribute="top" secondItem="vJj-uZ-ol7" secondAttribute="top" id="qHY-EF-fUL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gd6-bp-kY1"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zg-57-rTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-161" y="-19"/>
+            <point key="canvasLocation" x="-162.40000000000001" y="-19.340329835082461"/>
         </scene>
     </scenes>
 </document>
