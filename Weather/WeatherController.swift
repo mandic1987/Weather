@@ -31,3 +31,10 @@ class WeatherController: UIViewController {
         }
     }
 }
+
+extension WeatherController {
+    @IBAction func textFieldChanged(_ sender: UITextField) {
+        guard let s = sender.text else { return }
+        search(for: s)
+    }
+}
