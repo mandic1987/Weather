@@ -11,7 +11,7 @@ import UIKit
 class WeatherController: UIViewController {
 
     var dataManager: DataManager = .shared
-    private var forecast: [Forecast] = []
+    private var weather: [Forecast] = []
     
     @IBOutlet weak var table: UITableView!
     
@@ -29,7 +29,7 @@ class WeatherController: UIViewController {
                 return
             }
             
-            self.forecast = forecasts!
+            self.weather = forecasts!
         }
     }
 }
@@ -51,8 +51,6 @@ extension WeatherController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
 
 
