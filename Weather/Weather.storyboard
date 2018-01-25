@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="355" id="MOP-Pg-Fyy"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="14D-Q5-XIY" customClass="WeatherCell" customModule="Weather" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherCell" rowHeight="60" id="14D-Q5-XIY" customClass="WeatherCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="14D-Q5-XIY" id="FjK-oH-WhB">
@@ -115,6 +115,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ugF-BB-CXS" id="k11-Zf-Gji"/>
+                                    <outlet property="delegate" destination="ugF-BB-CXS" id="u0J-7x-dwa"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -136,6 +140,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gd6-bp-kY1"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="17k-z7-Yv3" id="BGx-8V-9pY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zg-57-rTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

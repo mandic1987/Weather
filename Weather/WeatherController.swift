@@ -13,6 +13,8 @@ class WeatherController: UIViewController {
     var dataManager: DataManager = .shared
     private var forecast: [Forecast] = []
     
+    @IBOutlet weak var table: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,3 +40,22 @@ extension WeatherController {
         search(for: s)
     }
 }
+
+extension WeatherController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: WeatherCell = table.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
+        
+        return cell
+    }
+    
+    
+}
+
+
+
+
+
