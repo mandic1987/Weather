@@ -15,7 +15,10 @@ class WeatherCell: UITableViewCell {
     @IBOutlet weak private var tempLabel: UILabel!
     
     func populate(withWeather weather: Forecast) {
-        
+        tempLabel.text = "\(weather.maxTempC)/\(weather.minTempC)"
+        for item in weather.icon {
+            iconImage.image = UIImage(named: item)
+        }
     }
     
 }

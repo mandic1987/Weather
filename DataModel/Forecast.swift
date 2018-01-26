@@ -18,8 +18,8 @@ final class Forecast: Unmarshaling {
     let pressure: Double
     let wind: Double
     let description: [String]
-    let icon: [String]
-    
+    var icon: [String]
+
     init(object: MarshaledObject) throws {
         temp = try object.value(for: "temp.day")
         tempMax = try object.value(for: "temp.max")
@@ -29,6 +29,24 @@ final class Forecast: Unmarshaling {
         wind = try object.value(for: "speed")
         description = try object.value(for: "weather.description")
         icon = try object.value(for: "weather.icon")
+    }
+    
+    var tempC: Double {
+        get {
+            return temp - 273.15
+        }
+    }
+    
+    var minTempC: Double {
+        get {
+            return tempMin - 273.15
+        }
+    }
+    
+    var maxTempC: Double {
+        get {
+            return tempMax  - 273.15
+        }
     }
 
 }
