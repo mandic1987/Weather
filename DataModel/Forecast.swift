@@ -19,6 +19,7 @@ final class Forecast: Unmarshaling {
     let wind: Double
     let description: [String]
     var icon: [String]
+    var date: Date
 
     init(object: MarshaledObject) throws {
         temp = try object.value(for: "temp.day")
@@ -29,6 +30,7 @@ final class Forecast: Unmarshaling {
         wind = try object.value(for: "speed")
         description = try object.value(for: "weather.description")
         icon = try object.value(for: "weather.icon")
+        date = try object.value(for: "dt")
     }
     
     var tempC: Double {
