@@ -14,6 +14,7 @@ class WeatherController: UIViewController {
     private var weathers: [Forecast] = []
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,9 @@ class WeatherController: UIViewController {
 }
 
 extension WeatherController {
-    @IBAction func textFieldChanged(_ sender: UITextField) {
-        guard let s = sender.text else { return }
+    @IBAction func search(_ sender: UIButton) {
+        guard let s = textField.text, s.count > 2 else { return }
         search(for: s)
-        print(s)
     }
 }
 
