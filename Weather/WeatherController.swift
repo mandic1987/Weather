@@ -9,12 +9,12 @@
 import UIKit
 
 class WeatherController: UIViewController {
-
-    var dataManager: DataManager = .shared
-    private var weathers: [Forecast] = []
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var textField: UITextField!
+
+    var dataManager: DataManager = .shared
+    private var weathers: [Forecast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
