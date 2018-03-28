@@ -21,6 +21,7 @@
 		E2CE93341FB5E4CA00FBBB18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE93331FB5E4CA00FBBB18 /* AppDelegate.swift */; };
 		E2CE933B1FB5E4CA00FBBB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE933A1FB5E4CA00FBBB18 /* Assets.xcassets */; };
 		E2CE933E1FB5E4CA00FBBB18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CE933C1FB5E4CA00FBBB18 /* LaunchScreen.storyboard */; };
+		E2D6BAB5206A85B000249475 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D6BAB4206A85B000249475 /* NumberFormatter.swift */; };
 		E2E4AEF11FBF21E200EAF98D /* Weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E4AEF01FBF21E200EAF98D /* Weather.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		E2CE933A1FB5E4CA00FBBB18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CE933D1FB5E4CA00FBBB18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2CE933F1FB5E4CA00FBBB18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2D6BAB4206A85B000249475 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		E2E4AEF01FBF21E200EAF98D /* Weather.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Weather.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				E20EF2E8201B2ADB0054EC04 /* DateExtension.swift */,
+				E2D6BAB4206A85B000249475 /* NumberFormatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				E20EF2E22019E9930054EC04 /* WeatherCell.swift in Sources */,
 				E204EA631FF27CE800156991 /* NetworkManager.swift in Sources */,
 				E204EA651FF27CFD00156991 /* DataManager.swift in Sources */,
+				E2D6BAB5206A85B000249475 /* NumberFormatter.swift in Sources */,
 				E278B13B1FC19208000B801A /* WeatherController.swift in Sources */,
 				E24905E61FF3D96E00F94F33 /* Forecast.swift in Sources */,
 				E29593B2200DFB4300359A58 /* City.swift in Sources */,

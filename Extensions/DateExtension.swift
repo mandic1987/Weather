@@ -58,4 +58,11 @@ extension DateFormatter {
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return df
     }()
+    
+    static let localeTimeFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.locale = Locale(identifier: "sr_Latn_RS")
+        df.dateFormat = "dd.MM.yyyy."
+        return df
+    }()
 }
