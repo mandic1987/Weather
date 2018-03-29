@@ -26,7 +26,9 @@ final class NetworkManager {
             
             switch self {
             case .name(let n):
-                s = "\(Path.host)?q=\(n)&cnt=\(Path.count)&appid=\(Path.apiKey)"
+                if let escName = n.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed) {
+                    s = "\(Path.host)?q=\(escName)&cnt=\(Path.count)&appid=\(Path.apiKey)"
+                }
             case .id(let id):
                 s = "\(Path.host)?id=\(id)&cnt=\(Path.count)&appid=\(Path.apiKey)"
             case .coordinates(let lat, let lon):
