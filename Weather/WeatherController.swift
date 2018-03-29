@@ -52,19 +52,22 @@ class WeatherController: UIViewController {
 extension WeatherController {
     func populate(with town: City, weather: [Forecast]) {
         let currentWeather = weather.first!
-        
+
+        guard let dates = DateFormatter.localeTimeFormatter.string(for: currentWeather.date) else { return }
         guard let curr = NumberFormatter.tempFormatter.string(for: currentWeather.tempC) else { return }
         guard let max = NumberFormatter.tempFormatter.string(for: currentWeather.maxTempC) else { return }
         guard let min = NumberFormatter.tempFormatter.string(for: currentWeather.minTempC) else { return }
-        guard let dates = DateFormatter.localeTimeFormatter.string(for: currentWeather.date) else { return }
+        guard let hum = NumberFormatter.tempFormatter.string(for: currentWeather.humidity) else { return }
+        guard let pre = NumberFormatter.tempFormatter.string(for: currentWeather.pressure) else { return }
+        guard let win = NumberFormatter.tempFormatter.string(for: currentWeather.wind) else { return }
 
         city.text = town.name
         date.text = dates
         current.text = "\(curr)°C"
         minMax.text = "\(max)°C/\(min)°C"
-        humidity.text = "\(currentWeather.humidity)%"
-        pressure.text = "\(currentWeather.pressure)hPa"
-        wind.text = "\(currentWeather.wind)kph"
+        humidity.text = "\(hum)%"
+        pressure.text = "\(pre)mbar"
+        wind.text = "\(win)m/s"
         
         for des in currentWeather.description {
             desc.text = des
