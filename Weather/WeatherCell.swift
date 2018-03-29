@@ -26,5 +26,4 @@ class WeatherCell: UITableViewCell {
             iconImage.image = UIImage(named: item)
         }
     }
-    
 }

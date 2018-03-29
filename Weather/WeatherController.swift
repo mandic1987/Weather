@@ -55,7 +55,7 @@ extension WeatherController: CLLocationManagerDelegate {
         let lon = userLocation.coordinate.longitude
         
         locationManager.stopUpdatingLocation()
-        getWeatherWithLoaction(for: lat, lon: lon)
+        getWeatherWithLocation(for: lat, lon: lon)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -65,7 +65,7 @@ extension WeatherController: CLLocationManagerDelegate {
 
 extension WeatherController {
     
-    func getWeatherWithLoaction(for lat: Double, lon: Double) {
+    func getWeatherWithLocation(for lat: Double, lon: Double) {
         dataManager.getWeatherByLocation(for: lat, longitude: lon) {
            [weak self] city, forecast, dataError in
             
@@ -76,7 +76,7 @@ extension WeatherController {
             guard let cityName = city else { return }
             guard let extForec = forecast else { return }
             
-            self?.populate(with: cityName, weather: extForec)
+            self?.populateView(with: cityName, weather: extForec)
             self?.weathers = extForec
             self?.table.reloadData()
         }
@@ -95,7 +95,7 @@ extension WeatherController {
             guard let cities = city else { return }
             guard let fr = forecasts else { return }
             
-            self?.populate(with: cities, weather: fr)
+            self?.populateView(with: cities, weather: fr)
             self?.weathers = fr
             self?.table.reloadData()
         }
@@ -103,7 +103,7 @@ extension WeatherController {
 }
 
 extension WeatherController {
-    func populate(with town: City, weather: [Forecast]) {
+    func populateView(with town: City, weather: [Forecast]) {
         let currentWeather = weather.first!
 
         guard let dates = DateFormatter.localeTimeFormatter.string(for: currentWeather.date) else { return }
