@@ -55,9 +55,7 @@ extension WeatherController: CLLocationManagerDelegate {
         let lon = userLocation.coordinate.longitude
         
         locationManager.stopUpdatingLocation()
-        print(lat)
-        print(lon)
-        
+        getWeatherWithLoaction(for: lat, lon: lon)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -65,14 +63,25 @@ extension WeatherController: CLLocationManagerDelegate {
     }
 }
 
-//extension WeatherController {
-//    func getWeatherWithLoaction(for lat: Double, lon: Double) {
-//        dataManager.getWeatherByLocation(for: <#T##Double#>, longitude: <#T##Double#>) {
-//            <#City?#>, <#[Forecast]?#>, <#DataError?#> in
-//            <#code#>
-//        }
-//    }
-//}
+extension WeatherController {
+    
+    func getWeatherWithLoaction(for lat: Double, lon: Double) {
+        dataManager.getWeatherByLocation(for: lat, longitude: lon) {
+           [weak self] city, forecast, dataError in
+            
+            if let _ = dataError {
+                return
+            }
+            
+            guard let cityName = city else { return }
+            guard let extForec = forecast else { return }
+            
+            self?.populate(with: cityName, weather: extForec)
+            self?.weathers = extForec
+            self?.table.reloadData()
+        }
+    }
+}
 
 extension WeatherController {
     func search(for name: String) {
