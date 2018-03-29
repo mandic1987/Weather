@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import Marshal
+
+typealias Callback = (City?, [Forecast]?, DataError?) -> Void
 
 final class DataManager {
     static let shared = DataManager()
@@ -19,8 +20,6 @@ final class DataManager {
 }
 
 extension DataManager {
-    typealias Callback = (City?, [Forecast]?, DataError?) -> Void
-    
     func search(for name: String, dataCallback: @escaping Callback) {
         let path: NetworkManager.Path = .name(n: name)
         
@@ -36,6 +35,38 @@ extension DataManager {
                 return
             }
 
+            do {
+                let city: City = try json.value(for: "city")
+                let forecast: [Forecast] = try json.value(for: "list")
+                DispatchQueue.main.async {
+                    dataCallback(city, forecast, nil)
+                }
+            } catch let error {
+                print(error)
+                DispatchQueue.main.async {
+                    dataCallback(nil, nil, DataError.internalError)
+                }
+            }
+        }
+    }
+}
+
+extension DataManager {
+    func getWeatherByLocation(for latitude: Double, longitude: Double, dataCallback: @escaping Callback) {
+        let path: NetworkManager.Path = .coordinates(lat: latitude, lon: longitude)
+        
+        networkManager.call(path: path) {
+            json, networkError in
+            
+            if let networkError = networkError {
+                dataCallback(nil, nil, DataError.networkError(networkError))
+            }
+            
+            guard let json = json else {
+                dataCallback(nil, nil, DataError.invalidJSON)
+                return
+            }
+            
             do {
                 let city: City = try json.value(for: "city")
                 let forecast: [Forecast] = try json.value(for: "list")

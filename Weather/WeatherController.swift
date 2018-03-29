@@ -30,7 +30,19 @@ class WeatherController: UIViewController {
         super.viewDidLoad()
         
     }
-    
+
+}
+
+//extension WeatherController {
+//    func getWeatherWithLoaction(for lat: Double, lon: Double) {
+//        dataManager.getWeatherByLocation(for: <#T##Double#>, longitude: <#T##Double#>) {
+//            <#City?#>, <#[Forecast]?#>, <#DataError?#> in
+//            <#code#>
+//        }
+//    }
+//}
+
+extension WeatherController {
     func search(for name: String) {
         dataManager.search(for: name) {
             [weak self] city, forecasts, dataError in
