@@ -36,35 +36,22 @@ class WeatherController: UIViewController {
 
 }
 
-extension WeatherController: CLLocationManagerDelegate {
-    func getGPSLocation() {
-        locationManager = CLLocationManager()
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
+extension WeatherController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return weathers.count
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation :CLLocation = locations[0] as CLLocation
-        let lat = userLocation.coordinate.latitude
-        let lon = userLocation.coordinate.longitude
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: WeatherCell = table.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
         
-        locationManager.stopUpdatingLocation()
-        getWeatherWithLocation(for: lat, lon: lon)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error \(error)")
+        let weather = weathers[indexPath.row]
+        cell.populateCell(withWeather: weather)
+        
+        return cell
     }
 }
 
 extension WeatherController {
-    
     func getWeatherWithLocation(for lat: Double, lon: Double) {
         dataManager.getWeatherByLocation(for: lat, longitude: lon) {
            [weak self] city, forecast, dataError in
@@ -81,9 +68,7 @@ extension WeatherController {
             self?.table.reloadData()
         }
     }
-}
 
-extension WeatherController {
     func search(for name: String) {
         dataManager.search(for: name) {
             [weak self] city, forecasts, dataError in
@@ -100,9 +85,7 @@ extension WeatherController {
             self?.table.reloadData()
         }
     }
-}
 
-extension WeatherController {
     func populateView(with town: City, weather: [Forecast]) {
         let currentWeather = weather.first!
 
@@ -132,25 +115,37 @@ extension WeatherController {
     }
 }
 
+extension WeatherController: CLLocationManagerDelegate {
+    func getGPSLocation() {
+        locationManager = CLLocationManager()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation :CLLocation = locations[0] as CLLocation
+        let lat = userLocation.coordinate.latitude
+        let lon = userLocation.coordinate.longitude
+        
+        locationManager.stopUpdatingLocation()
+        getWeatherWithLocation(for: lat, lon: lon)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error \(error)")
+    }
+}
+
 extension WeatherController {
     @IBAction func search(_ sender: UIButton) {
         guard let s = textField.text, s.count > 2 else { return }
         search(for: s)
         textField.resignFirstResponder()
-    }
-}
-
-extension WeatherController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weathers.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: WeatherCell = table.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        
-        let weather = weathers[indexPath.row]
-        cell.populateCell(withWeather: weather)
-        
-        return cell
     }
 }
