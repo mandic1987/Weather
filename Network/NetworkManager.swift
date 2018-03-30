@@ -67,7 +67,7 @@ extension NetworkManager {
             data, urlResponse, error in
 
             if let error = error as? URLError {
-                networkCallback(nil, NetworkError.urlError(error))
+                networkCallback(nil, NetworkError.networkError(originalError: error.localizedDescription))
                 return
             }
             

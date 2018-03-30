@@ -25,8 +25,8 @@ class WeatherController: UIViewController {
     @IBOutlet weak var wind: UILabel!
     
     var dataManager: DataManager = .shared
-    private var weathers: [Forecast] = []
     var locationManager: CLLocationManager!
+    private var weatherForecast: [Forecast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +38,13 @@ class WeatherController: UIViewController {
 
 extension WeatherController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weathers.count
+        return weatherForecast.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: WeatherCell = table.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
         
-        let weather = weathers[indexPath.row]
+        let weather = weatherForecast[indexPath.row]
         cell.populateCell(withWeather: weather)
         
         return cell
@@ -56,32 +56,48 @@ extension WeatherController {
         dataManager.getWeatherByLocation(for: lat, longitude: lon) {
            [weak self] city, forecast, dataError in
             
-            if let _ = dataError {
-                return
+            if let error = dataError {
+                switch error {
+                case .networkError(let networkError):
+                    print(networkError.message!)
+                    break
+                case .invalidJSON:
+                    break
+                case .noData:
+                    break
+                }
             }
             
             guard let cityName = city else { return }
-            guard let extForec = forecast else { return }
+            guard let forecast = forecast else { return }
             
-            self?.populateView(with: cityName, weather: extForec)
-            self?.weathers = extForec
+            self?.populateView(with: cityName, weather: forecast)
+            self?.weatherForecast = forecast
             self?.table.reloadData()
         }
     }
 
     func search(for name: String) {
         dataManager.search(for: name) {
-            [weak self] city, forecasts, dataError in
+            [weak self] city, forecast, dataError in
             
-            if let _ = dataError {
-                return
+            if let error = dataError {
+                switch error {
+                case .networkError(let networkError):
+                    print(networkError.message!)
+                    break
+                case .invalidJSON:
+                    break
+                case .noData:
+                    break
+                }
             }
             
             guard let cities = city else { return }
-            guard let fr = forecasts else { return }
+            guard let forecast = forecast else { return }
             
-            self?.populateView(with: cities, weather: fr)
-            self?.weathers = fr
+            self?.populateView(with: cities, weather: forecast)
+            self?.weatherForecast = forecast
             self?.table.reloadData()
         }
     }
@@ -135,10 +151,6 @@ extension WeatherController: CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
         getWeatherWithLocation(for: lat, lon: lon)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error \(error)")
     }
 }
 

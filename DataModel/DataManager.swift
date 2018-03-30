@@ -41,10 +41,9 @@ extension DataManager {
                 DispatchQueue.main.async {
                     dataCallback(city, forecast, nil)
                 }
-            } catch let error {
-                print(error)
+            } catch {
                 DispatchQueue.main.async {
-                    dataCallback(nil, nil, DataError.internalError)
+                    dataCallback(nil, nil, DataError.noData)
                 }
             }
         }
@@ -73,10 +72,9 @@ extension DataManager {
                 DispatchQueue.main.async {
                     dataCallback(city, forecast, nil)
                 }
-            } catch let error {
-                print(error)
+            } catch {
                 DispatchQueue.main.async {
-                    dataCallback(nil, nil, DataError.internalError)
+                    dataCallback(nil, nil, DataError.noData)
                 }
             }
         }
