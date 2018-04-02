@@ -17,13 +17,13 @@ enum NetworkError: Error {
     var title: String? {
         switch self {
         case .networkError:
-            return nil
+            return "Network error."
         case .invalidResponse:
-            return nil
+            return "Bad request"
         case .noData:
-            return "No Data to show"
+            return "Not found"
         case .invalidJSON:
-            return "Invalid JSON"
+            return "Internal Server Error"
         }
     }
     
@@ -32,11 +32,11 @@ enum NetworkError: Error {
         case .networkError(let error):
             return error.description
         case .invalidResponse:
-            return "Invalid response"
+            return "There was an error loading the request. Please try again later."
         case .noData:
-            return nil
+            return "No data available"
         case .invalidJSON:
-            return nil
+            return "The server encountered an internal error and was unable to complete your request."
         }
     }
 }

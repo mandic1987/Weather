@@ -59,11 +59,22 @@ extension WeatherController {
             if let error = dataError {
                 switch error {
                 case .networkError(let networkError):
-                    print(networkError.message!)
+                    let alert = UIAlertController(title: error.title, message: networkError.message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                     break
                 case .invalidJSON:
+                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                     break
                 case .noData:
+                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                     break
                 }
             }
@@ -84,11 +95,22 @@ extension WeatherController {
             if let error = dataError {
                 switch error {
                 case .networkError(let networkError):
-                    print(networkError.message!)
+                    let alert = UIAlertController(title: networkError.title, message: networkError.message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                     break
                 case .invalidJSON:
+                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                     break
                 case .noData:
+                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                     break
                 }
             }
