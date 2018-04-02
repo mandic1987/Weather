@@ -109,8 +109,8 @@ extension WeatherController {
     func populateView(with town: City, weather: [Forecast]) {
         let currentWeather = weather.first!
 
-        guard let dates = DateFormatter.localeTimeFormatter.string(for: currentWeather.date) else { return }
-        guard let curr = NumberFormatter.tempFormatter.string(for: currentWeather.tempC) else { return }
+        guard let dat = DateFormatter.localeTimeFormatter.string(for: currentWeather.date) else { return }
+        guard let cur = NumberFormatter.tempFormatter.string(for: currentWeather.curTempC) else { return }
         guard let max = NumberFormatter.tempFormatter.string(for: currentWeather.maxTempC) else { return }
         guard let min = NumberFormatter.tempFormatter.string(for: currentWeather.minTempC) else { return }
         guard let hum = NumberFormatter.tempFormatter.string(for: currentWeather.humidity) else { return }
@@ -118,8 +118,8 @@ extension WeatherController {
         guard let win = NumberFormatter.tempFormatter.string(for: currentWeather.wind) else { return }
 
         city.text = town.name
-        date.text = dates
-        current.text = "\(curr)°C"
+        date.text = dat
+        current.text = "\(cur)°C"
         minMax.text = "\(max)°C/\(min)°C"
         humidity.text = "\(hum)%"
         pressure.text = "\(pre)mbar"

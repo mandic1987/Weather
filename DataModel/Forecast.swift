@@ -33,7 +33,7 @@ final class Forecast: Unmarshaling {
         date = try object.value(for: "dt")
     }
     
-    var tempC: Double {
+    var curTempC: Double {
         get {
             return temp - 273.15
         }
