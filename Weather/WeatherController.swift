@@ -59,22 +59,13 @@ extension WeatherController {
             if let error = dataError {
                 switch error {
                 case .networkError(let networkError):
-                    let alert = UIAlertController(title: error.title, message: networkError.message, preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.callNetworkAlert(for: networkError)
                     break
                 case .invalidJSON:
-                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.callDataAlert(for: error)
                     break
                 case .noData:
-                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.callDataAlert(for: error)
                     break
                 }
             }
@@ -95,22 +86,13 @@ extension WeatherController {
             if let error = dataError {
                 switch error {
                 case .networkError(let networkError):
-                    let alert = UIAlertController(title: networkError.title, message: networkError.message, preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.callNetworkAlert(for: networkError)
                     break
                 case .invalidJSON:
-                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.callDataAlert(for: error)
                     break
                 case .noData:
-                    let alert = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.callDataAlert(for: error)
                     break
                 }
             }
@@ -173,6 +155,22 @@ extension WeatherController: CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
         getWeatherWithLocation(for: lat, lon: lon)
+    }
+}
+
+extension WeatherController {
+    func callDataAlert(for alert: DataError) {
+        let alert = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func callNetworkAlert(for alert: NetworkError) {
+        let alert = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }
 
