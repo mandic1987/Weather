@@ -12,7 +12,7 @@ typealias Callback = (City?, [Forecast]?, DataError?) -> Void
 
 final class DataManager {
     static let shared = DataManager()
-    private let networkManager = NetworkManager()
+    private let networkManager = WeatherNetworkManager()
     
     private init () {
         
@@ -21,7 +21,7 @@ final class DataManager {
 
 extension DataManager {
     func search(for name: String, dataCallback: @escaping Callback) {
-        let path: NetworkManager.Path = .name(n: name)
+        let path: WeatherNetworkManager.Path = .name(n: name)
         
         networkManager.call(path: path) {
             json, networkError in
@@ -52,7 +52,7 @@ extension DataManager {
 
 extension DataManager {
     func getWeatherByLocation(for latitude: Double, longitude: Double, dataCallback: @escaping Callback) {
-        let path: NetworkManager.Path = .coordinates(lat: latitude, lon: longitude)
+        let path: WeatherNetworkManager.Path = .coordinates(lat: latitude, lon: longitude)
         
         networkManager.call(path: path) {
             json, networkError in
