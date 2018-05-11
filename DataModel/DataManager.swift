@@ -13,6 +13,7 @@ typealias Callback = (City?, [Forecast]?, DataError?) -> Void
 final class DataManager {
     static let shared = DataManager()
     private let networkManager = WeatherNetworkManager()
+    private let imageNetworkManager = ImageNetworkManager()
     
     private init () {
         
@@ -75,6 +76,38 @@ extension DataManager {
             } catch {
                 DispatchQueue.main.async {
                     dataCallback(nil, nil, DataError.noData)
+                }
+            }
+        }
+    }
+}
+
+extension DataManager {
+    typealias ICallback = ([Image]?, DataError?) -> Void
+    
+    func searchImage(for name: String, dataCallback: @escaping ICallback) {
+        let path: ImageNetworkManager.Path = .name(name: name)
+        
+        imageNetworkManager.call(path: path) {
+            json, networkError in
+            
+            if let networkError = networkError {
+                dataCallback(nil, DataError.networkError(networkError))
+            }
+            
+            guard let json = json else {
+                dataCallback(nil, DataError.invalidJSON)
+                return
+            }
+            
+            do {
+                let imageURL: [Image] = try json.value(for: "photos")
+                DispatchQueue.main.async {
+                    dataCallback(imageURL, nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    dataCallback(nil, DataError.noData)
                 }
             }
         }
