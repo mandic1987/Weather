@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ugF-BB-CXS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ugF-BB-CXS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -257,6 +257,7 @@
                     </view>
                     <connections>
                         <outlet property="city" destination="yuF-Wr-dQB" id="ZGZ-ox-sPU"/>
+                        <outlet property="cityImage" destination="06r-Y4-dSI" id="ooE-Cj-Ynb"/>
                         <outlet property="current" destination="y4D-2F-ekc" id="hpo-IO-ynz"/>
                         <outlet property="date" destination="LK8-pN-Wr1" id="KoO-R5-yTd"/>
                         <outlet property="desc" destination="OGA-KH-Y4S" id="BvF-Mo-k4Z"/>

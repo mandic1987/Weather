@@ -8,12 +8,14 @@
 
 import UIKit
 import CoreLocation
+import Kingfisher
 
 class WeatherController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var textField: UITextField!
-
+    @IBOutlet weak var cityImage: UIImageView!
+    
     @IBOutlet weak var city: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var icon: UIImageView!
@@ -105,7 +107,32 @@ extension WeatherController {
             self?.table.reloadData()
         }
     }
+    
+    func imageSearch(for name: String) {
+        dataManager.searchImage(for: name) {
+            [weak self] image, dataError in
+            
+            if let error = dataError {
+                switch error {
+                case .networkError(let networkError):
+                    self?.callNetworkAlert(for: networkError)
+                    break
+                case .invalidJSON:
+                    self?.callDataAlert(for: error)
+                    break
+                case .noData:
+                    self?.callDataAlert(for: error)
+                    break
+                }
+            }
+            
+            guard let image = image else { return }
+            self?.populateImage(with: image)
+        }
+    }
+}
 
+extension WeatherController {
     func populateView(with town: City, weather: [Forecast]) {
         let currentWeather = weather.first!
 
@@ -132,6 +159,13 @@ extension WeatherController {
         for img in currentWeather.icon {
             icon.image = UIImage(named: img)
         }
+    }
+    
+    func populateImage(with picture: [Image]) {
+        guard let image = picture.first?.imageLink else { return }
+        guard let imageURL = URL(string: image) else {return}
+        
+        cityImage.kf.setImage(with: imageURL)
     }
 }
 
@@ -178,6 +212,7 @@ extension WeatherController {
     @IBAction func search(_ sender: UIButton) {
         guard let s = textField.text, s.count > 2 else { return }
         search(for: s)
+        imageSearch(for: s)
         textField.resignFirstResponder()
     }
 }
