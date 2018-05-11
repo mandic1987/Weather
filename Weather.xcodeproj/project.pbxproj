@@ -13,9 +13,11 @@
 		E20EF2E22019E9930054EC04 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20EF2E12019E9930054EC04 /* WeatherCell.swift */; };
 		E20EF2E9201B2ADB0054EC04 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20EF2E8201B2ADB0054EC04 /* DateExtension.swift */; };
 		E20EF2EB201B60BE0054EC04 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20EF2EA201B60BE0054EC04 /* Icons.xcassets */; };
+		E225679720A5B7CA0014B7C3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E225679620A5B7CA0014B7C3 /* Image.swift */; };
 		E24905E41FF3D96300F94F33 /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24905E31FF3D96300F94F33 /* DataError.swift */; };
 		E24905E61FF3D96E00F94F33 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24905E51FF3D96E00F94F33 /* Forecast.swift */; };
 		E24905EA1FF3DA5800F94F33 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24905E91FF3DA5800F94F33 /* NetworkError.swift */; };
+		E25F930C20A4711400276663 /* ImageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F930B20A4711400276663 /* ImageNetworkManager.swift */; };
 		E278B13B1FC19208000B801A /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278B13A1FC19208000B801A /* WeatherController.swift */; };
 		E29593B2200DFB4300359A58 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29593B1200DFB4300359A58 /* City.swift */; };
 		E2CE93341FB5E4CA00FBBB18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE93331FB5E4CA00FBBB18 /* AppDelegate.swift */; };
@@ -34,9 +36,11 @@
 		E20EF2E12019E9930054EC04 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		E20EF2E8201B2ADB0054EC04 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E20EF2EA201B60BE0054EC04 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
+		E225679620A5B7CA0014B7C3 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		E24905E31FF3D96300F94F33 /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
 		E24905E51FF3D96E00F94F33 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		E24905E91FF3DA5800F94F33 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E25F930B20A4711400276663 /* ImageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkManager.swift; sourceTree = "<group>"; };
 		E278B13A1FC19208000B801A /* WeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherController.swift; sourceTree = "<group>"; };
 		E29593B1200DFB4300359A58 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		E2CE93301FB5E4CA00FBBB18 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +97,7 @@
 				E24905E31FF3D96300F94F33 /* DataError.swift */,
 				E24905E51FF3D96E00F94F33 /* Forecast.swift */,
 				E29593B1200DFB4300359A58 /* City.swift */,
+				E225679620A5B7CA0014B7C3 /* Image.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E204EA621FF27CE800156991 /* WeatherNetworkManager.swift */,
+				E25F930B20A4711400276663 /* ImageNetworkManager.swift */,
 				E24905E91FF3DA5800F94F33 /* NetworkError.swift */,
 			);
 			path = Network;
@@ -154,7 +160,6 @@
 				E2CE932D1FB5E4CA00FBBB18 /* Frameworks */,
 				E2CE932E1FB5E4CA00FBBB18 /* Resources */,
 				3BA5B72A8CFE9701C38D4C0E /* [CP] Embed Pods Frameworks */,
-				B9A6443E239C8C98584DEE5D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,10 +226,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iOSApp-Weather/Pods-iOSApp-Weather-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,21 +257,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B9A6443E239C8C98584DEE5D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSApp-Weather/Pods-iOSApp-Weather-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -278,8 +270,10 @@
 				E20EF2E22019E9930054EC04 /* WeatherCell.swift in Sources */,
 				E204EA631FF27CE800156991 /* WeatherNetworkManager.swift in Sources */,
 				E204EA651FF27CFD00156991 /* DataManager.swift in Sources */,
+				E225679720A5B7CA0014B7C3 /* Image.swift in Sources */,
 				E2D6BAB5206A85B000249475 /* NumberFormatter.swift in Sources */,
 				E278B13B1FC19208000B801A /* WeatherController.swift in Sources */,
+				E25F930C20A4711400276663 /* ImageNetworkManager.swift in Sources */,
 				E24905E61FF3D96E00F94F33 /* Forecast.swift in Sources */,
 				E29593B2200DFB4300359A58 /* City.swift in Sources */,
 				E2CE93341FB5E4CA00FBBB18 /* AppDelegate.swift in Sources */,
